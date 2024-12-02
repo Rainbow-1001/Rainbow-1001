@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>稻穀含水率預測器</title>
+    <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .pagination {
@@ -94,40 +95,13 @@
                 currentImage: null,
             };
 
-            const translations = {
-                zh: {
-                    title: '稻穀含水率預測器',
-                    upload: '上傳圖片',
-                    predict: '預測含水率',
-                    history: '歷史記錄',
-                    clear: '清除全部',
-                    noHistory: '尚無歷史記錄',
-                },
-                en: {
-                    title: 'Rice Moisture Predictor',
-                    upload: 'Upload Image',
-                    predict: 'Predict Moisture',
-                    history: 'History',
-                    clear: 'Clear All',
-                    noHistory: 'No history yet',
-                },
-            };
-
-            function setLanguage(lang) {
-                document.title = translations[lang].title;
-                document.getElementById('predictButton').textContent = translations[lang].predict;
-                document.getElementById('clearHistoryBtn').textContent = translations[lang].clear;
-                document.getElementById('emptyHistoryMessage').textContent = translations[lang].noHistory;
-            }
-
             async function fetchPrediction(imageData) {
                 return new Promise((resolve) => {
                     setTimeout(() => {
                         const moistureContent = (Math.random() * (30 - 15) + 15).toFixed(2);
                         resolve({
                             moistureContent,
-                            recommendation:
-                                moistureContent > 25 ? '建議等待再收割' : '適合開始收割',
+                            recommendation: moistureContent > 25 ? '建議等待再收割' : '適合開始收割',
                         });
                     }, 2000);
                 });
@@ -255,7 +229,6 @@
 
             function initialize() {
                 document.addEventListener('DOMContentLoaded', function () {
-                    setLanguage('zh');
                     initializeTabs();
                     initializeImageUpload();
                     initializePrediction();
